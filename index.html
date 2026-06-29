@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> শব্দচাষ ডটকম</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'bn',
+                includedLanguages: 'bn,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0000CD',
+                        'primary-dark': '#000099',
+                        secondary: '#8B2323',
+                        button: '#FEE469',
+                        'button-dark': '#E5CE50',
+                        dark: '#1a1a2e',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans Bengali', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+        
+</head>
+<body class="bg-[#f5f5f5] text-gray-800">
+
+<!-- ========== TOP BAR ========== -->
+<div class="bg-primary text-white text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1"><span class="iconify w-3 h-3" data-icon="lucide:phone"></span>+8801768517760</span>
+            <span class="hidden sm:flex items-center gap-1"><span class="iconify w-3 h-3" data-icon="lucide:mail"></span>info@shabdachash.com</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <div id="google_translate_element"></div>
+            <span class="text-white/60">|</span>
+            <a href="#" class="hover:text-button transition-colors">Track Order</a>
+        </div>
+    </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+        <div class="flex items-center justify-between gap-4">
+            <a href="index.html" class="flex-shrink-0">
+                <!-- images/logo/logo.png -->
+                <img src=" https://i.ibb.co.com/nsmshf12/Shabdo-Chash-Logo.png " alt="Shabdachash Prakash" class="h-12 w-auto object-cover rounded" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <div class="hidden text-primary font-bold text-xl leading-tight">শব্দচাষ<br><span class="text-secondary text-sm font-medium">প্রকাশ</span></div>
+            </a>
+            <div class="flex-1 max-w-xl hidden md:block">
+                <div class="relative">
+                    <input type="text" placeholder="Search by book or author name / বই বা লেখকের নাম দিয়ে খুঁজুন" class="w-full pl-4 pr-12 py-2.5 border-2 border-primary/20 rounded-lg focus:border-primary focus:outline-none text-sm transition-colors">
+                    <button class="absolute right-1 top-1 bottom-1 px-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"><span class="iconify w-5 h-5" data-icon="lucide:search"></span></button>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="document.getElementById('mob-search').classList.toggle('hidden')" class="md:hidden p-2 text-primary hover:bg-primary/5 rounded-lg"><span class="iconify w-5 h-5" data-icon="lucide:search"></span></button>
+                <a href="login.html" class="hidden sm:flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary px-2 py-1.5 rounded-lg hover:bg-primary/5"><span class="iconify w-5 h-5" data-icon="lucide:user"></span><span class="hidden lg:inline">Login</span></a>
+                <a href="register.html" class="hidden sm:flex items-center gap-1.5 text-sm text-white bg-primary hover:bg-primary-dark px-3 py-1.5 rounded-lg transition-colors">Register</a>
+                <button onclick="openCart()" class="relative p-2 text-primary hover:bg-primary/5 rounded-lg"><span class="iconify w-6 h-6" data-icon="lucide:shopping-cart"></span><span id="cart-count" class="absolute -top-1 -right-1 bg-secondary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium hidden">0</span></button>
+                <button onclick="document.getElementById('mob-menu').classList.add('active')" class="lg:hidden p-2 text-primary hover:bg-primary/5 rounded-lg"><span class="iconify w-6 h-6" data-icon="lucide:menu"></span></button>
+            </div>
+        </div>
+        <div id="mob-search" class="hidden md:hidden mt-3">
+            <div class="relative"><input type="text" placeholder="বই বা লেখকের নাম দিয়ে খুঁজুন" class="w-full pl-4 pr-12 py-2.5 border-2 border-primary/20 rounded-lg focus:border-primary focus:outline-none text-sm"><button class="absolute right-1 top-1 bottom-1 px-3 bg-primary text-white rounded-md"><span class="iconify w-5 h-5" data-icon="lucide:search"></span></button></div>
+        </div>
+    </div>
+    <!-- NAV -->
+    <nav class="bg-primary hidden lg:block">
+        <div class="max-w-7xl mx-auto px-4">
+            <ul class="flex items-center text-white text-sm font-medium">
+                <li class="nav-link"><a href="index.html" class="block px-4 py-3 bg-primary-dark">হোম  </a></li>
+                <li class="nav-link"><a href=" https://dev-booksstorev2.pantheonsite.io/home-v2/" class="block px-4 py-3 hover:bg-primary-dark"> নতুন বই</a></li>
+                <li class="nav-link"><a href="shabdachash-books.html" class="block px-4 py-3 hover:bg-primary-dark">শব্দচাষের বই </a></li>
+                <li class="nav-link"><a href="all-books.html" class="block px-4 py-3 hover:bg-primary-dark"> সব বই </a></li>
+                <li class="nav-link"><a href=" https://dev-booksstorev2.pantheonsite.io/home/" class="block px-4 py-3 hover:bg-primary-dark flex items-center gap-1"> বইমেলা  ২০২৬ <span class="bg-button text-primary text-[10px] font-bold px-1.5 py-0.5 rounded">NEW</span></a></li>
+                <li class="nav-link mega-trigger relative">
+                    <a href="author.html" class="block px-4 py-3 hover:bg-primary-dark flex items-center gap-1"> লেখক <span class="iconify w-3 h-3" data-icon="lucide:chevron-down"></span></a>
+                    <div class="mega-menu absolute top-full left-0 bg-white text-gray-700 shadow-xl rounded-b-lg w-64 z-50 border-t-2 border-primary">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-primary mb-3 text-sm border-b pb-2"> জনপ্রিয় বই</h3>
+                            <div class="space-y-2">
+                                <a href="author/humayun-ahmed.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50"><img src="https://picsum.photos/seed/author-humayun/40/40.jpg" class="w-10 h-10 rounded-full object-cover" alt=""><div><p class="text-sm font-medium">হুমায়ূন আহমেদ</p><p class="text-xs text-gray-500">Novelist</p></div></a>
+                                <a href="author/jafar-iqbal.html" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50"><img src="https://picsum.photos/seed/author-jafar/40/40.jpg" class="w-10 h-10 rounded-full object-cover" alt=""><div><p class="text-sm font-medium">মুহম্মদ জাফর ইকবাল</p><p class="text-xs text-gray-500">Writer & Scientist</p></div></a>
+                                <a href="author-list.html" class="block text-center text-sm text-primary font-medium pt-2 border-t mt-2 hover:underline">All Authors →</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-link mega-trigger relative">
+                    <a href="subject.html" class="block px-4 py-3 hover:bg-primary-dark flex items-center gap-1"> বিষয় <span class="iconify w-3 h-3" data-icon="lucide:chevron-down"></span></a>
+                    <div class="mega-menu absolute top-full left-0 bg-white text-gray-700 shadow-xl rounded-b-lg w-[600px] z-50 border-t-2 border-primary">
+                        <div class="p-4 grid grid-cols-3 gap-1 max-h-96 overflow-y-auto">
+                            <a href="category/translation.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">অনুবাদ</a>
+                            <a href="category/law.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">আইন</a>
+                            <a href="category/self-development.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">আত্মউন্নয়ন</a>
+                            <a href="category/self-dev-translation.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">আত্মউন্নয়ন (অনুবাদ)</a>
+                            <a href="category/autobiography.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">আত্মজীবনী/স্মৃতিচারণ</a>
+                            <a href="category/recitation.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">আবৃত্তি</a>
+                            <a href="category/ecommerce.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ই-কমার্স</a>
+                            <a href="category/history-heritage.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ইতিহাস-ঐতিহ্য</a>
+                            <a href="category/insurance.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">বীমা</a>
+                            <a href="category/electronic-media.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ইলেকট্রনিক মিডিয়া</a>
+                            <a href="category/novel.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">উপন্যাস</a>
+                            <a href="category/content-marketing.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কন্টেন্ট মার্কেটিং</a>
+                            <a href="category/poetry.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কবিতা</a>
+                            <a href="category/teen-literature.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কিশোর সাহিত্য</a>
+                            <a href="category/teen-health.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কিশোর স্বাস্থ্য রক্ষা সিরিজ</a>
+                            <a href="category/career.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ক্যারিয়ার</a>
+                            <a href="category/mathematics.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">গণিত</a>
+                            <a href="category/stories.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">গল্প</a>
+                            <a href="category/cinema.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">চলচ্চিত্র</a>
+                            <a href="category/agriculture.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কৃষি</a>
+                            <a href="category/medicine.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">চিকিৎসা</a>
+                            <a href="category/painting.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">চিত্রকলা</a>
+                            <a href="category/biography.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">জীবনী</a>
+                            <a href="category/it.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">তথ্যপ্রযুক্তি</a>
+                            <a href="category/thriller.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">থ্রিলার</a>
+                            <a href="category/religion.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ধর্ম</a>
+                            <a href="category/drama-travel.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">নাটক/ভ্রমণ</a>
+                            <a href="category/anthropology.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">নৃতাত্ত্বিক জনগোষ্ঠী</a>
+                            <a href="category/dance-music.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">নৃত্য/সঙ্গীত</a>
+                            <a href="category/text-reference.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">পাঠ্য/পাঠ্যসহায়িকা</a>
+                            <a href="category/parenting.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">প্যারেন্টিং</a>
+                            <a href="category/nature.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">প্রকৃতি/উদ্ভিদ/প্রাণী</a>
+                            <a href="category/essay-research.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">প্রবন্ধ/গবেষণা</a>
+                            <a href="category/economy.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">অর্থনীতি/ব্যবসা</a>
+                            <a href="category/bilingual.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">দ্বিভাষিক বই</a>
+                            <a href="category/science.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">বিজ্ঞান</a>
+                            <a href="category/debate.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">বিতর্ক</a>
+                            <a href="category/sci-fi.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">বিজ্ঞান কল্পকাহিনী</a>
+                            <a href="category/grammar.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ব্যাকরণ/প্যারেন্টিং</a>
+                            <a href="category/practice.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">অনুশীলনী</a>
+                            <a href="category/language-movement.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ভাষা আন্দোলন</a>
+                            <a href="category/travel.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ভ্রমণ</a>
+                            <a href="category/marketing-branding.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">মার্কেটিং/ব্র্যান্ডিং</a>
+                            <a href="category/liberation-war.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">মুক্তিযুদ্ধ</a>
+                            <a href="category/non-summary-stories.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">ব্যঞ্জনবিহীন গল্প</a>
+                            <a href="category/comic-books.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কমিক বই</a>
+                            <a href="category/comedy.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">রম্যরচনা</a>
+                            <a href="category/politics-columns.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">রাজনীতি/প্রবন্ধ/কলাম</a>
+                            <a href="category/littlemag.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">লিটলম্যাগ</a>
+                            <a href="category/poetry-rubaiyat.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">কবিতা/রুবাইয়াত</a>
+                            <a href="category/education.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">শিক্ষা</a>
+                            <a href="category/children-literature.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">শিশু সাহিত্য</a>
+                            <a href="category/funny-children.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">শিশুদের মজার গল্প</a>
+                            <a href="category/children-literature-2.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">শিশুসাহিত্য</a>
+                            <a href="category/music.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">সঙ্গীত</a>
+                            <a href="category/honorary.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">সম্মাননা বই</a>
+                            <a href="category/journalism.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">সাংবাদিকতা</a>
+                            <a href="category/interviews.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">সাক্ষাৎকার</a>
+                            <a href="category/literary-figures.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">সাহিত্যিক ও সাংস্কৃতিক ব্যক্তিত্ব</a>
+                            <a href="category/science-fiction.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">সায়েন্স ফিকশন</a>
+                            <a href="category/hotel-business.html" class="text-sm text-gray-600 hover:text-primary hover:bg-primary/5 px-2 py-1.5 rounded">হোটেল ব্যবসা</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-link"><a href="blog.html" class="block px-4 py-3 hover:bg-primary-dark"> ব্লগ</a></li>
+                <li class="nav-link"><a href="gallery.html" class="block px-4 py-3 hover:bg-primary-dark">গ্যালারী</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- ========== MOBILE MENU ========== -->
+<div id="mob-menu" class="mobile-menu fixed inset-0 z-[60] bg-white overflow-y-auto lg:hidden">
+    <div class="flex items-center justify-between p-4 border-b">
+        <span class="text-primary font-bold text-lg">মেনু</span>
+        <button onclick="document.getElementById('mob-menu').classList.remove('active')" class="p-2 hover:bg-gray-100 rounded-lg"><span class="iconify w-6 h-6" data-icon="lucide:x"></span></button>
+    </div>
+    <div class="p-4 space-y-1">
+        <a href="index.html" class="block px-4 py-3 bg-primary text-white rounded-lg font-medium">Home</a>
+        <a href="new-books.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">New Books</a>
+        <a href="shabdachash-books.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">Shabdachash Books</a>
+        <a href="all-books.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">All Books</a>
+        <a href="book-fair-2026.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">Book Fair 2026</a>
+        <a href="author.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">Author</a>
+        <a href="subject.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">Subject</a>
+        <a href="blog.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">Blog</a>
+        <a href="gallery.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg">Gallery</a>
+        <div class="border-t pt-3 mt-3 space-y-1">
+            <a href="login.html" class="block px-4 py-3 hover:bg-gray-50 rounded-lg text-primary font-medium">Login</a>
+            <a href="register.html" class="block px-4 py-3 bg-primary text-white rounded-lg text-center font-medium">Register</a>
+        </div>
+    </div>
+</div>
+
+<!-- ========== CART SIDEBAR ========== -->
+<div id="cart-overlay" class="cart-overlay fixed inset-0 z-[70] hidden" onclick="closeCart()"></div>
+<div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[80] shadow-2xl translate-x-full transition-transform duration-300">
+    <div class="flex items-center justify-between p-4 border-b bg-primary text-white">
+        <h2 class="font-semibold text-lg flex items-center gap-2"><span class="iconify w-5 h-5" data-icon="lucide:shopping-cart"></span>Your Cart</h2>
+        <button onclick="closeCart()" class="p-1 hover:bg-white/20 rounded-lg"><span class="iconify w-6 h-6" data-icon="lucide:x"></span></button>
+    </div>
+    <div id="cart-empty" class="flex flex-col items-center justify-center h-[calc(100%-200px)] p-8 text-center">
+        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4"><span class="iconify w-12 h-12 text-gray-300" data-icon="lucide:shopping-bag"></span></div>
+        <p class="text-gray-500 text-lg font-medium mb-1">Your cart is empty</p>
+        <p class="text-gray-400 text-sm mb-6">আপনার কার্টে কোনো বই নেই</p>
+        <a href="all-books.html" class="bg-button text-primary font-semibold px-8 py-3 rounded-lg hover:bg-button-dark transition-colors shadow-md">Buy Now</a>
+    </div>
+    <div id="cart-items" class="hidden flex-1 overflow-y-auto p-4 space-y-3"></div>
+    <div id="cart-footer" class="hidden border-t p-4 bg-gray-50">
+        <div class="flex justify-between items-center mb-3"><span class="text-gray-600">Subtotal:</span><span id="cart-subtotal" class="font-semibold text-lg text-primary">৳0</span></div>
+        <a href="checkout.html" class="block w-full bg-button text-primary font-semibold py-3 rounded-lg text-center hover:bg-button-dark transition-colors shadow-md mb-2">Proceed to Checkout</a>
+        <div class="mt-3 pt-3 border-t">
+            <p class="text-xs text-gray-500 mb-2 text-center">Pay with</p>
+            <div class="flex items-center justify-center gap-3">
+                <a href="tel:+8801768517760 " target="_blank" class="bg-white border rounded-lg px-3 py-2 flex items-center gap-1.5 hover:shadow-md transition-shadow" title="bKash"><span class="text-xs font-semibold text-pink-600">bKash +8801768517760</span></a>
+                <a href="#" target="_blank" class="bg-white border rounded-lg px-3 py-2 flex items-center gap-1.5 hover:shadow-md transition-shadow" title="Nagad"><span class="text-xs font-semibold text-orange-600">Nagad</span></a>
+                <a href=" #" target="_blank" class="bg-white border rounded-lg px-3 py-2 flex items-center gap-1.5 hover:shadow-md transition-shadow" title="Rocket"><span class="text-xs font-semibold text-purple-600">Rocket</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================== -->
+<!-- HERO BANNER SLIDER — YOUR 3 REAL IMAGES                    -->
+<!-- ========================================================== -->
+<section class="relative overflow-hidden bg-black" id="hero-slider">
+    <div class="relative h-[320px] sm:h-[420px] md:h-[520px] lg:h-[580px]">
+
+        <!-- SLIDE 1: Shobdo-Chash-Hero-Banner-01.jpg -->
+        <!-- images/banners/banner-1.jpg -->
+        <div class="slide active" data-slide="0">
+            <img src="https://z-cdn-media.chatglm.cn/files/a4247169-5a3f-4bc9-8e36-31bb402bd99b.jpg?auth_key=1882643323-69b3a04074fb4e9695d63d1706c671ea-0-9aa99c36d2c3e982fc8a07e5ea55622e" 
+                 alt="শব্দচাষ প্রকাশ - সাহিত্য আসর" 
+                 class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent"></div>
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl mx-auto px-6 w-full">
+                    <div class="max-w-lg anim-fiu">
+                        <span class="bg-button text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Shabdachash Prakash</span>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 leading-tight drop-shadow-lg">শব্দচাষ প্রকাশ</h1>
+                        <p class="text-white/85 mt-3 text-sm sm:text-base leading-relaxed">সাহিত্যের আলোয় পথ চলা — পাঠকের জন্য সেরা বই সমূহ</p>
+                        <a href="all-books.html" class="inline-flex items-center gap-2 mt-6 bg-button text-primary font-semibold px-6 py-3 rounded-lg hover:bg-button-dark transition-colors shadow-lg">
+                            <span>বই দেখুন</span>
+                            <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Shabdho-Chash-Hero-banner-02.jpg -->
+        <!-- images/banners/banner-2.jpg -->
+        <div class="slide" data-slide="1">
+            <img src="https://z-cdn-media.chatglm.cn/files/42a35673-ace4-4972-bc31-76451f75d414.jpg?auth_key=1882643323-1c3a79a876524c329028a7a59ca72f79-0-6eb5a095d959c050b420dfa727a10d10" 
+                 alt="সাহিত্য সম্মেলন ২০২০" 
+                 class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-secondary/85 via-secondary/50 to-transparent"></div>
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl mx-auto px-6 w-full">
+                    <div class="max-w-lg">
+                        <span class="bg-white text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">সাহিত্য সম্মেলন</span>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 leading-tight drop-shadow-lg">সাহিত্য সম্মেলন ২০২০</h1>
+                        <p class="text-white/85 mt-3 text-sm sm:text-base leading-relaxed">শব্দচাষ প্রকাশের আয়োজনে সাহিত্যিকদের মিলনমেলা</p>
+                        <a href="gallery.html" class="inline-flex items-center gap-2 mt-6 bg-button text-primary font-semibold px-6 py-3 rounded-lg hover:bg-button-dark transition-colors shadow-lg">
+                            <span>গ্যালারি দেখুন</span>
+                            <span class="iconify w-4 h-4" data-icon="lucide:image"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Shobdho-chash-Hero-Benner-03.jpg -->
+        <!-- images/banners/banner-3.jpg -->
+        <div class="slide" data-slide="2">
+            <img src="https://z-cdn-media.chatglm.cn/files/bc521aa9-2bd4-4de6-9f06-c776e3e1f8e8.jpg?auth_key=1882643323-301d6a4ad1cc40c09db386855cf8d0fd-0-2ee98268cf92210bbeeb34c48ecac4d2" 
+                 alt="গ্রন্থ শো - শব্দচাষ প্রকাশ" 
+                 class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/85 via-primary-dark/50 to-transparent"></div>
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl mx-auto px-6 w-full">
+                    <div class="max-w-lg">
+                        <span class="bg-button text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">গ্রন্থ শো</span>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-4 leading-tight drop-shadow-lg">গ্রন্থ শো ২০২৬</h1>
+                        <p class="text-white/85 mt-3 text-sm sm:text-base leading-relaxed">নতুন বইয়ের উন্মোচন ও পাঠকদের সাথে সাক্ষাৎ</p>
+                        <a href=" https://dev-booksstorev2.pantheonsite.io/home/ " class="inline-flex items-center gap-2 mt-6 bg-button text-primary font-semibold px-6 py-3 rounded-lg hover:bg-button-dark transition-colors shadow-lg">
+                            <span>বিস্তারিত দেখুন</span>
+                            <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slider Controls -->
+    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2.5 z-10">
+        <button onclick="goSlide(0)" class="sdot w-3 h-3 rounded-full bg-white transition-all" data-dot="0" style="opacity:1;transform:scale(1.3)"></button>
+        <button onclick="goSlide(1)" class="sdot w-3 h-3 rounded-full bg-white/50 transition-all" data-dot="1"></button>
+        <button onclick="goSlide(2)" class="sdot w-3 h-3 rounded-full bg-white/50 transition-all" data-dot="2"></button>
+    </div>
+    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"><span class="iconify w-5 h-5" data-icon="lucide:chevron-left"></span></button>
+    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"><span class="iconify w-5 h-5" data-icon="lucide:chevron-right"></span></button>
+</section>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main class="max-w-7xl mx-auto px-4 py-8">
+<div class="flex flex-col lg:flex-row gap-6">
+
+<!-- LEFT SIDEBAR — CATEGORIES -->
+<aside class="w-full lg:w-72 flex-shrink-0">
+    <div class="bg-white rounded-xl shadow-sm border p-5 sticky top-28">
+        <h2 class="text-primary font-bold text-lg mb-4 flex items-center gap-2 pb-3 border-b"><span class="iconify w-5 h-5" data-icon="lucide:layout-grid"></span>বিষয়শ্রেণী সমূহ</h2>
+        <div class="cat-list space-y-0.5">
+            <a href=" https://dev-booksstorev2.pantheonsite.io/home/" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:languages"></span>অনুবাদ</a>
+            <a href="category/law.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:scale"></span>আইন</a>
+            <a href="category/self-development.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:trending-up"></span>আত্মউন্নয়ন</a>
+            <a href="category/self-dev-translation.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:book-open"></span>আত্মউন্নয়ন (অনুবাদ)</a>
+            <a href="category/autobiography.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:pen-tool"></span>আত্মজীবনী/স্মৃতিচারণ</a>
+            <a href="category/recitation.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:mic"></span>আবৃত্তি</a>
+            <a href="category/ecommerce.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:shopping-bag"></span>ই-কমার্স</a>
+            <a href="category/history-heritage.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:landmark"></span>ইতিহাস-ঐতিহ্য</a>
+            <a href="category/insurance.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:shield-check"></span>বীমা</a>
+            <a href="category/electronic-media.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:tv"></span>ইলেকট্রনিক মিডিয়া</a>
+            <a href="category/novel.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:book-marked"></span>উপন্যাস</a>
+            <a href="category/content-marketing.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:megaphone"></span>কন্টেন্ট মার্কেটিং</a>
+            <a href="category/poetry.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:feather"></span>কবিতা</a>
+            <a href="category/teen-literature.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:graduation-cap"></span>কিশোর সাহিত্য</a>
+            <a href="category/teen-health.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:heart-pulse"></span>কিশোর স্বাস্থ্য রক্ষা সিরিজ</a>
+            <a href="category/career.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:briefcase"></span>ক্যারিয়ার</a>
+            <a href="category/mathematics.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:calculator"></span>গণিত</a>
+            <a href="category/stories.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:book-open-text"></span>গল্প</a>
+            <a href="category/cinema.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:clapperboard"></span>চলচ্চিত্র</a>
+            <a href="category/agriculture.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:sprout"></span>কৃষি</a>
+            <a href="category/medicine.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:stethoscope"></span>চিকিৎসা</a>
+            <a href="category/painting.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:palette"></span>চিত্রকলা</a>
+            <a href="category/biography.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:user-circle"></span>জীবনী</a>
+            <a href="category/it.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:monitor"></span>তথ্যপ্রযুক্তি</a>
+            <a href="category/thriller.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:zap"></span>থ্রিলার</a>
+            <a href="category/religion.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:moon"></span>ধর্ম</a>
+            <a href="category/drama-travel.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:drama"></span>নাটক/ভ্রমণ</a>
+            <a href="category/anthropology.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:users"></span>নৃতাত্ত্বিক জনগোষ্ঠী</a>
+            <a href="category/dance-music.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:music"></span>নৃত্য/সঙ্গীত</a>
+            <a href="category/text-reference.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:file-text"></span>পাঠ্য/পাঠ্যসহায়িকা</a>
+            <a href="category/parenting.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:baby"></span>প্যারেন্টিং</a>
+            <a href="category/nature.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:trees"></span>প্রকৃতি/উদ্ভিদ/প্রাণী</a>
+            <a href="category/essay-research.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:file-search"></span>প্রবন্ধ/গবেষণা</a>
+            <a href="category/economy.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:bar-chart-3"></span>অর্থনীতি/ব্যবসা</a>
+            <a href="category/bilingual.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:languages"></span>দ্বিভাষিক বই</a>
+            <a href="category/science.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:atom"></span>বিজ্ঞান</a>
+            <a href="category/debate.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:message-circle"></span>বিতর্ক</a>
+            <a href="category/sci-fi.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:rocket"></span>বিজ্ঞান কল্পকাহিনী</a>
+            <a href="category/grammar.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:spell-check"></span>ব্যাকরণ/প্যারেন্টিং</a>
+            <a href="category/practice.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:pencil-line"></span>অনুশীলনী</a>
+            <a href="category/language-movement.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:flag"></span>ভাষা আন্দোলন</a>
+            <a href="category/travel.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:map"></span>ভ্রমণ</a>
+            <a href="category/marketing-branding.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:target"></span>মার্কেটিং/ব্র্যান্ডিং</a>
+            <a href="category/liberation-war.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:swords"></span>মুক্তিযুদ্ধ</a>
+            <a href="category/non-summary-stories.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:book-x"></span>ব্যঞ্জনবিহীন গল্প</a>
+            <a href="category/comic-books.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:comic"></span>কমিক বই</a>
+            <a href="category/comedy.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:smile"></span>রম্যরচনা</a>
+            <a href="category/politics-columns.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:newspaper"></span>রাজনীতি/প্রবন্ধ/কলাম</a>
+            <a href="category/littlemag.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:book-copy"></span>লিটলম্যাগ</a>
+            <a href="category/poetry-rubaiyat.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:scroll-text"></span>কবিতা/রুবাইয়াত</a>
+            <a href="category/education.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:school"></span>শিক্ষা</a>
+            <a href="category/children-literature.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:baby"></span>শিশু সাহিত্য</a>
+            <a href="category/funny-children.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:laugh"></span>শিশুদের মজার গল্প</a>
+            <a href="category/children-literature-2.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:book-heart"></span>শিশুসাহিত্য</a>
+            <a href="category/music.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:music-2"></span>সঙ্গীত</a>
+            <a href="category/honorary.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:award"></span>সম্মাননা বই</a>
+            <a href="category/journalism.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:radio"></span>সাংবাদিকতা</a>
+            <a href="category/interviews.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:mic-2"></span>সাক্ষাৎকার</a>
+            <a href="category/literary-figures.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:crown"></span>সাহিত্যিক ও সাংস্কৃতিক ব্যক্তিত্ব</a>
+            <a href="category/science-fiction.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:telescope"></span>সায়েন্স ফিকশন</a>
+            <a href="category/hotel-business.html" class="cat-link block text-sm text-gray-600 py-2 px-3 rounded-lg"><span class="iconify w-4 h-4 inline mr-2 text-primary/60" data-icon="lucide:hotel"></span>হোটেল ব্যবসা</a>
+        </div>
+    </div>
+</aside>
+
+<!-- RIGHT CONTENT -->
+<div class="flex-1 min-w-0 space-y-10">
+
+    <!-- NEW ARRIVALS -->
+    <section>
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"><span class="w-1.5 h-8 bg-primary rounded-full"></span>নতুন বই <span class="text-sm font-normal text-gray-400">(New Arrivals)</span></h2>
+            <a href=" https://dev-booksstorev2.pantheonsite.io/home-v2/" class="text-primary text-sm font-medium hover:underline flex items-center gap-1">View All <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/new-arrivals/book-01.jpg -->
+                    <img src=" https://i.ibb.co.com/JW9c5LDc/img01.jpg " alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+                    <button onclick="addToCart(' নীল দর্পণ ',350)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2 leading-snug">নীল দর্পণ </h3><p class="text-xs text-gray-500 mt-1">লেখক: দীনবন্ধু মিত্র</p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳350</span><span class="text-gray-400 text-xs line-through">৳450</span></div></div>
+            </div>
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/new-arrivals/book-02.jpg -->
+                    <img src=" https://i.ibb.co.com/rRByHGmz/img02.jpg  " alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+                    <button onclick="addToCart(' বিসর্জন',280)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2 leading-snug">বিসর্জন </h3><p class="text-xs text-gray-500 mt-1">লেখক: রবীন্দ্রনাথ ঠাকুর</p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳280</span></div></div>
+            </div>
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/new-arrivals/book-03.jpg -->
+                    <img src="  https://i.ibb.co.com/gZzMN0Sj/img03.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+                    <button onclick="addToCart(' সাজাহান',420)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2 leading-snug"> সাজাহান</h3><p class="text-xs text-gray-500 mt-1">লেখক: দ্বিজেন্দ্রলাল রায়</p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳420</span><span class="text-gray-400 text-xs line-through">৳500</span></div></div>
+            </div>
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/new-arrivals/book-04.jpg -->
+                    <img src="https://i.ibb.co.com/PZxXBL1M/img04.jpg  " alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+                    <button onclick="addToCart(' চর্চাপদ',310)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2 leading-snug"> চর্চাপদ</h3><p class="text-xs text-gray-500 mt-1">লেখক: অতীন্দ্র মজুমদার </p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳310</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMO BANNER -->
+    <!-- images/banners/promo-banner.jpg -->
+    <section class="relative rounded-xl overflow-hidden h-48 sm:h-56">
+        <img src="https://z-cdn-media.chatglm.cn/files/bc521aa9-2bd4-4de6-9f06-c776e3e1f8e8.jpg?auth_key=1882643323-301d6a4ad1cc40c09db386855cf8d0fd-0-2ee98268cf92210bbeeb34c48ecac4d2" alt="Promo" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/85 to-primary/30 flex items-center">
+            <div class="px-6 sm:px-10">
+                <h3 class="text-white font-bold text-xl sm:text-2xl">বইমেলা ২০২৬ - প্রি-অর্ডার চলছে!</h3>
+                <p class="text-white/80 text-sm mt-2">সকল বইয়ে ২০% ছাড় পান</p>
+                <a href="book-fair-2026.html" class="inline-block mt-4 bg-button text-primary font-semibold px-5 py-2 rounded-lg text-sm hover:bg-button-dark transition-colors">Pre-Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BESTSELLERS -->
+    <section>
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"><span class="w-1.5 h-8 bg-secondary rounded-full"></span>বেস্টসেলার <span class="text-sm font-normal text-gray-400">(Bestsellers)</span></h2>
+            <a href="all-books.html?sort=bestselling" class="text-primary text-sm font-medium hover:underline flex items-center gap-1">View All <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/bestsellers/best-01.jpg -->
+                    <img src=" https://i.ibb.co.com/rKgGn5gc/img05.jpg " alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-button text-primary text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-0.5"><span class="iconify w-3 h-3" data-icon="lucide:flame"></span>BEST</span>
+                    <button onclick="addToCart(' নির্বাচিত ছোটগল্প',250)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2"> নির্বাচিত ছোটগল্প</h3><p class="text-xs text-gray-500 mt-1">লেখক: সুবোধ ঘোষ </p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳250</span></div><div class="flex items-center gap-0.5 mt-1"><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-gray-300" data-icon="lucide:star"></span><span class="text-[10px] text-gray-400 ml-1">(128)</span></div></div>
+            </div>
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/bestsellers/best-02.jpg -->
+                    <img src=" https://i.ibb.co.com/XZw1knSd/img06.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-button text-primary text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-0.5"><span class="iconify w-3 h-3" data-icon="lucide:flame"></span>BEST</span>
+                    <button onclick="addToCart(' চতুরঙ্গ ',380)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2">চতুরঙ্গ </h3><p class="text-xs text-gray-500 mt-1">লেখক: রবীন্দ্রনাথ ঠাকুর</p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳380</span></div><div class="flex items-center gap-0.5 mt-1"><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="text-[10px] text-gray-400 ml-1">(256)</span></div></div>
+            </div>
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/bestsellers/best-03.jpg -->
+                    <img src=" https://i.ibb.co.com/nscrXqJG/img07.jpg " alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-button text-primary text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-0.5"><span class="iconify w-3 h-3" data-icon="lucide:flame"></span>BEST</span>
+                    <button onclick="addToCart(' ঠাকুরমার ঝুলি',195)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2"> ঠাকুরমার ঝুলি</h3><p class="text-xs text-gray-500 mt-1">লেখক: দক্ষিণারঞ্জন মিত্র মজুমদার</p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳195</span></div><div class="flex items-center gap-0.5 mt-1"><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-gray-300" data-icon="lucide:star"></span><span class="text-[10px] text-gray-400 ml-1">(89)</span></div></div>
+            </div>
+            <div class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group cursor-pointer">
+                <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                    <!-- images/books/bestsellers/best-04.jpg -->
+                    <img src=" https://i.ibb.co.com/p6y9LHMv/img08.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 bg-button text-primary text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-0.5"><span class="iconify w-3 h-3" data-icon="lucide:flame"></span>BEST</span>
+                    <button onclick="addToCart(' ছোটদের রাজনীতি ও অর্থনীতি  ',450)" class="absolute bottom-2 right-2 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button>
+                </div>
+                <div class="p-3"><h3 class="text-sm font-medium text-gray-800 line-clamp-2"> ছোটদের রাজনীতি ও অর্থনীতি  </h3><p class="text-xs text-gray-500 mt-1">লেখক: ড. নীহার কুমার সরকার</p><div class="flex items-center gap-2 mt-2"><span class="text-primary font-bold text-sm">৳450</span><span class="text-gray-400 text-xs line-through">৳550</span></div><div class="flex items-center gap-0.5 mt-1"><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="iconify w-3 h-3 text-yellow-400" data-icon="lucide:star"></span><span class="text-[10px] text-gray-400 ml-1">(312)</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED AUTHORS -->
+    <section>
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"><span class="w-1.5 h-8 bg-button rounded-full"></span>জনপ্রিয় লেখক</h2>
+            <a href="author.html" class="text-primary text-sm font-medium hover:underline flex items-center gap-1">All Authors <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+        </div>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+            <a href="author/humayun-ahmed.html" class="text-center group"><div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-[3px] border-primary/20 group-hover:border-primary transition-colors shadow-sm"><img src=" https://i.ibb.co.com/m599r2tR/images-2.jpg" alt="হুমায়ূন আহমেদ" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"></div><p class="text-xs font-medium mt-2 text-gray-700 group-hover:text-primary transition-colors line-clamp-2">হুমায়ূন আহমেদ</p></a>
+            <a href="author/jafar-iqbal.html" class="text-center group"><div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-[3px] border-primary/20 group-hover:border-primary transition-colors shadow-sm"><img src=" https://i.ibb.co.com/BFxsDV6/download.jpg" alt="মুহম্মদ জাফর ইকবাল" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"></div><p class="text-xs font-medium mt-2 text-gray-700 group-hover:text-primary transition-colors line-clamp-2">মুহম্মদ জাফর ইকবাল</p></a>
+            <a href="author/sunil.html" class="text-center group"><div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-[3px] border-primary/20 group-hover:border-primary transition-colors shadow-sm"><img src=" https://i.ibb.co.com/r2DRLb4y/download-1.jpg" alt="সুনীল গঙ্গোপাধ্যায়" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"></div><p class="text-xs font-medium mt-2 text-gray-700 group-hover:text-primary transition-colors line-clamp-2">সুনীল গঙ্গোপাধ্যায়</p></a>
+            <a href="author/tahmima.html" class="text-center group"><div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-[3px] border-primary/20 group-hover:border-primary transition-colors shadow-sm"><img src=" https://i.ibb.co.com/bMdRPCBp/download-2.jpg" alt="তাহমিমা আনাম" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"></div><p class="text-xs font-medium mt-2 text-gray-700 group-hover:text-primary transition-colors line-clamp-2">তাহমিমা আনাম</p></a>
+            <a href="author/anisul.html" class="text-center group"><div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-[3px] border-primary/20 group-hover:border-primary transition-colors shadow-sm"><img src="  https://i.ibb.co.com/5xxT5Xx6/download-3.jpg" alt="আনিসুল হক" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"></div><p class="text-xs font-medium mt-2 text-gray-700 group-hover:text-primary transition-colors line-clamp-2">আনিসুল হক</p></a>
+            <a href="author/rabindranath.html" class="text-center group"><div class="w-20 h-20 mx-auto rounded-full overflow-hidden border-[3px] border-primary/20 group-hover:border-primary transition-colors shadow-sm"><img src=" https://i.ibb.co.com/Xx6f2dXG/download-4.jpg" alt="রবীন্দ্রনাথ ঠাকুর" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"></div><p class="text-xs font-medium mt-2 text-gray-700 group-hover:text-primary transition-colors line-clamp-2">রবীন্দ্রনাথ ঠাকুর</p></a>
+        </div>
+    </section>
+
+    <!-- FEATURED CATEGORIES -->
+    <section>
+        <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6"><span class="w-1.5 h-8 bg-secondary rounded-full"></span>জনপ্রিয় বিষয়শ্রেণী</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            <a href="category/novel.html" class="relative h-32 rounded-xl overflow-hidden group"><img src="https://i.ibb.co.com/hJM9YxP9/img-27.jpg " alt="উপন্যাস" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">উপন্যাস</span></a>
+            <a href="category/poetry.html" class="relative h-32 rounded-xl overflow-hidden group"><img src=" https://i.ibb.co.com/ycWJcSC0/img-20.jpg" alt="কবিতা" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">কবিতা</span></a>
+            <a href="category/self-development.html" class="relative h-32 rounded-xl overflow-hidden group"><img src="https://picsum.photos/seed/cat-selfdev/300/150.jpg" alt="আত্মউন্নয়ন" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">আত্মউন্নয়ন</span></a>
+            <a href="category/history-heritage.html" class="relative h-32 rounded-xl overflow-hidden group"><img src="https://picsum.photos/seed/cat-history/300/150.jpg" alt="ইতিহাস" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">ইতিহাস-ঐতিহ্য</span></a>
+            <a href="category/liberation-war.html" class="relative h-32 rounded-xl overflow-hidden group"><img src="https://picsum.photos/seed/cat-liberation/300/150.jpg" alt="মুক্তিযুদ্ধ" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">মুক্তিযুদ্ধ</span></a>
+            <a href="category/science.html" class="relative h-32 rounded-xl overflow-hidden group"><img src="https://picsum.photos/seed/cat-science/300/150.jpg" alt="বিজ্ঞান" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">বিজ্ঞান</span></a>
+            <a href="category/children-literature.html" class="relative h-32 rounded-xl overflow-hidden group"><img src=" https://i.ibb.co.com/5hDc4hLq/imj-12.jpg" alt="শিশু সাহিত্য" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">শিশু সাহিত্য</span></a>
+            <a href="category/translation.html" class="relative h-32 rounded-xl overflow-hidden group"><img src=" https://i.ibb.co.com/Vp3G3jb3/img-21.jpg" alt="অনুবাদ" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div><span class="absolute bottom-3 left-3 text-white font-semibold text-sm">অনুবাদ</span></a>
+        </div>
+    </section>
+
+    <!-- SHABDACHASH BOOKS -->
+    <section class="bg-white rounded-xl border shadow-sm p-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"><span class="w-1.5 h-8 bg-primary rounded-full"></span>শব্দচাষ বই</h2>
+            <a href="shabdachash-books.html" class="text-primary text-sm font-medium hover:underline flex items-center gap-1">View All <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            <div class="book-card rounded-xl overflow-hidden group cursor-pointer border"><div class="relative aspect-[3/4] overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/shab-book-01/250/333.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-2 left-2 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded">শব্দচাষ</span><button onclick="addToCart('শব্দচাষের গল্প',320)" class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button></div><div class="p-2.5"><h3 class="text-xs font-medium text-gray-800 line-clamp-2">শব্দচাষের গল্প</h3><p class="text-primary font-bold text-xs mt-1">৳320</p></div></div>
+            <div class="book-card rounded-xl overflow-hidden group cursor-pointer border"><div class="relative aspect-[3/4] overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/shab-book-02/250/333.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-2 left-2 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded">শব্দচাষ</span><button onclick="addToCart('ভাষার ছায়া',275)" class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button></div><div class="p-2.5"><h3 class="text-xs font-medium text-gray-800 line-clamp-2">ভাষার ছায়া</h3><p class="text-primary font-bold text-xs mt-1">৳275</p></div></div>
+            <div class="book-card rounded-xl overflow-hidden group cursor-pointer border"><div class="relative aspect-[3/4] overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/shab-book-03/250/333.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-2 left-2 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded">শব্দচাষ</span><button onclick="addToCart('চিন্তার দ্বীপ',390)" class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button></div><div class="p-2.5"><h3 class="text-xs font-medium text-gray-800 line-clamp-2">চিন্তার দ্বীপ</h3><p class="text-primary font-bold text-xs mt-1">৳390</p></div></div>
+            <div class="book-card rounded-xl overflow-hidden group cursor-pointer border"><div class="relative aspect-[3/4] overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/shab-book-04/250/333.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-2 left-2 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded">শব্দচাষ</span><button onclick="addToCart('আলোর পথে',210)" class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button></div><div class="p-2.5"><h3 class="text-xs font-medium text-gray-800 line-clamp-2">আলোর পথে</h3><p class="text-primary font-bold text-xs mt-1">৳210</p></div></div>
+            <div class="book-card rounded-xl overflow-hidden group cursor-pointer border"><div class="relative aspect-[3/4] overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/shab-book-05/250/333.jpg" alt="Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-2 left-2 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded">শব্দচাষ</span><button onclick="addToCart('মুক্তির মন্ত্র',340)" class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-dark shadow-lg"><span class="iconify w-4 h-4" data-icon="lucide:plus"></span></button></div><div class="p-2.5"><h3 class="text-xs font-medium text-gray-800 line-clamp-2">মুক্তির মন্ত্র</h3><p class="text-primary font-bold text-xs mt-1">৳340</p></div></div>
+        </div>
+    </section>
+
+
+    <!-- BLOG -->
+    <section>
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2"><span class="w-1.5 h-8 bg-button rounded-full"></span>ব্লগ</h2>
+            <a href="blog.html" class="text-primary text-sm font-medium hover:underline flex items-center gap-1">All Posts <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <a href="blog/post-01.html" class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group"><div class="aspect-video overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/blog-post-01/400/225.jpg" alt="Blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div><div class="p-4"><span class="text-[10px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded">বইমেলা</span><h3 class="text-sm font-semibold text-gray-800 mt-2 line-clamp-2 group-hover:text-primary transition-colors">বইমেলা ২০২৬: কোন বইগুলো অপেক্ষা করছে?</h3><p class="text-xs text-gray-500 mt-1.5 line-clamp-2">এবারের বইমেলায় শব্দচাষ প্রকাশ থেকে আসছে অনেক নতুন বই...</p><span class="text-[11px] text-gray-400 mt-2 block">Jan 15, 2026</span></div></a>
+            <a href="blog/post-02.html" class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group"><div class="aspect-video overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/blog-post-02/400/225.jpg" alt="Blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div><div class="p-4"><span class="text-[10px] font-semibold text-secondary bg-secondary/10 px-2 py-0.5 rounded">সাক্ষাৎকার</span><h3 class="text-sm font-semibold text-gray-800 mt-2 line-clamp-2 group-hover:text-primary transition-colors">লেখক আনিসুল হকের সাথে আড্ডা</h3><p class="text-xs text-gray-500 mt-1.5 line-clamp-2">বিখ্যাত লেখক আনিসুল হকের সাথে কথা বলেছি তাঁর নতুন বই নিয়ে...</p><span class="text-[11px] text-gray-400 mt-2 block">Jan 10, 2026</span></div></a>
+            <a href="blog/post-03.html" class="book-card bg-white rounded-xl shadow-sm border overflow-hidden group"><div class="aspect-video overflow-hidden bg-gray-100"><img src="https://picsum.photos/seed/blog-post-03/400/225.jpg" alt="Blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></div><div class="p-4"><span class="3text-[10px] font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded">রিভিউ</span><h3 class="text-sm font-semibold text-gray-800 mt-2 line-clamp-2 group-hover:text-primary transition-colors">২০২৫ এর সেরা ১০টি বই</h3><p class="text-xs text-gray-500 mt-1.5 line-clamp-2">গত বছরের সবচেয়ে জনপ্রিয় ও সমালোচক প্রশংসিত বইগুলোর তালিকা...</p><span class="text-[11px] text-gray-400 mt-2 block">Jan 5, 2026</span></div></a>
+        </div>
+    </section>
+
+</div>
+</div>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-dark text-white mt-12">
+    <!-- Payment Banner -->
+    <div class="border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div><h3 class="font-semibold text-lg">পেমেন্ট মেথড</h3><p class="text-white/60 text-sm mt-1">আমরা নিচের পেমেন্ট গেটওয়ে সমূহ সাপোর্ট করি</p></div>
+                <div class="flex items-center gap-4">
+                    <a href=" tel:+8801768517760" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl px-5 py-3 flex items-center gap-2 transition-colors"><span class="font-bold text-pink-400 text-sm">bKash</span></a>
+                    <a href=" #" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl px-5 py-3 flex items-center gap-2 transition-colors"><span class="font-bold text-orange-400 text-sm">Nagad</span></a>
+                    <a href=" #" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl px-5 py-3 flex items-center gap-2 transition-colors"><span class="font-bold text-purple-400 text-sm">Rocket</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <div class="max-w-7xl mx-auto px-4 py-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <div class="text-2xl font-bold mb-4"><span class="text-white">শব্দচাষ</span><span class="text-button"> প্রকাশ</span></div>
+                <p class="text-white/60 text-sm leading-relaxed">Discover a huge collection of books in different genres. We are dedicated to readers, students and thinkers.</p>
+                <p class="text-white/60 text-sm leading-relaxed mt-2">বিভিন্ন ধরণের বইয়ের বিশাল সংগ্রহ আবিষ্কার করুন। আমরা পাঠক, শিক্ষার্থী ও চিন্তাশীলদের নিয়োজিত।</p>
+                <div class="flex items-center gap-3 mt-4">
+                    <a href=" https://web.facebook.com/sabdhu.chash" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"><span class="iconify w-4 h-4" data-icon="lucide:facebook"></span></a>
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"><span class="iconify w-4 h-4" data-icon="lucide:youtube"></span></a>
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"><span class="iconify w-4 h-4" data-icon="lucide:instagram"></span></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg mb-4 flex items-center gap-2"><span class="w-1 h-5 bg-button rounded-full"></span>Quick Links</h3>
+                <ul class="space-y-2.5">
+                    <li><a href="shabdachash-books.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>Shabdchash Books</a></li>
+                    <li><a href="terms.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>Terms and Conditions</a></li>
+                    <li><a href="returns.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>Returns and Refunds Policy</a></li>
+                    <li><a href="privacy.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>Privacy Policy</a></li>
+                    <li><a href="contact.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>Contact</a></li>
+                    <li><a href="about.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg mb-4 flex items-center gap-2"><span class="w-1 h-5 bg-button rounded-full"></span>Categories</h3>
+                <ul class="space-y-2.5">
+                    <li><a href="category/novel.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>উপন্যাস (Novel)</a></li>
+                    <li><a href="category/poetry.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>কবিতা (Poetry)</a></li>
+                    <li><a href="category/history-heritage.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>ইতিহাস (History)</a></li>
+                    <li><a href="category/self-development.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>আত্মউন্নয়ন</a></li>
+                    <li><a href="category/liberation-war.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>মুক্তিযুদ্ধ</a></li>
+                    <li><a href="subject.html" class="text-white/60 text-sm hover:text-button transition-colors flex items-center gap-1.5"><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>সকল বিষয়শ্রেণী →</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-lg mb-4 flex items-center gap-2"><span class="w-1 h-5 bg-button rounded-full"></span>Contact</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3"><span class="iconify w-5 h-5 text-button mt-0.5 flex-shrink-0" data-icon="lucide:mail"></span><div><p class="text-white/40 text-xs">Email</p><a href="mailto:info@shabdachash.com" class="text-white/80 text-sm hover:text-button transition-colors">info@shabdachash.com</a></div></li>
+                    <li class="flex items-start gap-3"><span class="iconify w-5 h-5 text-button mt-0.5 flex-shrink-0" data-icon="lucide:phone"></span><div><p class="text-white/40 text-xs">Phone</p><a href="tel:+8801722616040" class="text-white/80 text-sm hover:text-button transition-colors">+8801768517760</a></div></li>
+                    <li class="flex items-start gap-3"><span class="iconify w-5 h-5 text-button mt-0.5 flex-shrink-0" data-icon="lucide:map-pin"></span><div><p class="text-white/40 text-xs">Address</p><p class="text-white/80 text-sm">38, P.K. Roy Road, Banglabazar, Dhaka-1100</p></div></li>
+                    <li class="flex items-start gap-3"><span class="iconify w-5 h-5 text-button mt-0.5 flex-shrink-0" data-icon="lucide:file-text"></span><div><p class="text-white/40 text-xs">TIN</p><p class="text-white/80 text-sm">490200233675</p></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-white/10"><div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2"><p class="text-white/40 text-xs">© 2026 Shabdachash Prakash. All Rights Reserved.</p>
+        <p class="text-white/40 text-xs">Design And Developed By ❤️ <a href="https://github.com/dev-tarunnya ">Tapos Chandra Das</a></p></div></div>
+</footer>
+
+<!-- ========== WHATSAPP BUTTONS ========== -->
+<a href="https://wa.me/8801768517760?text=Hello!%20I%20need%20help%20with%20books." target="_blank" class="wa-btn fixed bottom-24 right-4 z-50 anim-pg" title="WhatsApp Live Chat">
+    <div class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+    <div class="wa-tooltip absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs font-medium px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">💬 WhatsApp Chat<div class="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white rotate-45"></div></div>
+</a>
+<a href="tel:+8801768517760" class="wa-btn fixed bottom-10 right-4 z-50 anim-bs" title="Call Us Now">
+    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform"><span class="iconify w-7 h-7 text-white" data-icon="lucide:phone"></span></div>
+    <div class="wa-tooltip absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs font-medium px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">📞 +8801768517760<div class="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white rotate-45"></div></div>
+</a>
+
+<!-- Toast Container -->
+<!-- <div class="flex gap-3 p-3 bg-gray-50 rounded-lg">
+                <div class="w-14 h-18 bg-gray-200 rounded flex-shrink-0 overflow-hidden">
+                    <img src="https://picsum.photos/seed/${item.name.replace(/\s/g,'-')}/60/80.jpg" class="w-full h-full object-cover" alt="">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-sm font-medium text-gray-800 truncate">${item.name}</h4>
+                    <p class="text-primary font-bold text-sm mt-1">৳${item.price}</p>
+                    <div class="flex items-center gap-2 mt-1.5">
+                        <button onclick="changeQty(${i},-1)" class="w-6 h-6 bg-gray-200 rounded text-sm hover:bg-gray-300 flex items-center justify-center">−</button>
+                        <span class="text-sm font-medium w-6 text-center">${item.qty}</span>
+                        <button onclick="changeQty(${i},1)" class="w-6 h-6 bg-gray-200 rounded text-sm hover:bg-gray-300 flex items-center justify-center">+</button>
+                    </div>
+                </div>
+                <button onclick="removeFromCart(${i})" class="self-start text-gray-400 hover:text-red-500 transition-colors p-1"><span class="iconify w-4 h-4" data-icon="lucide:trash-2"></span></button>
+            </div> -->
+   
+
+        <!-- JS Main file -->
+
+        <script src="js/test.js"></script>
+
+ 
+</body>
+</html>
