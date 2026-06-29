@@ -1,0 +1,56 @@
+    * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Noto Sans Bengali','Inter',sans-serif; background:#f5f5f5; }
+        ::-webkit-scrollbar { width:6px; }
+        ::-webkit-scrollbar-thumb { background:#0000CD; border-radius:3px; }
+        .goog-te-gadget span,.goog-te-gadget img { display:none!important; }
+        #google_translate_element { display:inline-flex; align-items:center; }
+        .goog-te-combo { background:#fff!important; border:1px solid #d1d5db!important; border-radius:6px!important; padding:4px 8px!important; font-size:13px!important; font-family:'Noto Sans Bengali',sans-serif!important; outline:none!important; color:#333!important; cursor:pointer; }
+        .skiptranslate iframe,.goog-te-banner-frame { display:none!important; }
+        body { top:0!important; }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes pulseGlow { 0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5)} 50%{box-shadow:0 0 0 12px rgba(37,211,102,0)} }
+        @keyframes bounceS { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        .anim-fiu { animation:fadeInUp .6s ease-out forwards; }
+        .anim-pg { animation:pulseGlow 2s infinite; }
+        .anim-bs { animation:bounceS 2s infinite; }
+        .cat-list { max-height:540px; overflow-y:auto; }
+        .cat-list::-webkit-scrollbar { width:4px; }
+        .cat-list::-webkit-scrollbar-thumb { background:rgba(0,0,205,.25); border-radius:2px; }
+        .book-card:hover { transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,.12); }
+        .book-card { transition:all .3s ease; }
+        .cat-link:hover { background:#0000CD; color:#fff; padding-left:20px; }
+        .cat-link { transition:all .2s ease; }
+        .nav-link { position:relative; }
+        .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#FEE469; transition:width .3s ease; }
+        .nav-link:hover::after { width:100%; }
+        .mega-menu { opacity:0; visibility:hidden; transform:translateY(10px); transition:all .3s ease; }
+        .mega-trigger:hover .mega-menu { opacity:1; visibility:visible; transform:translateY(0); }
+        .slide { position:absolute; inset:0; opacity:0; transition:opacity .9s ease-in-out; }
+        .slide.active { opacity:1; }
+        .mobile-menu { transform:translateX(-100%); transition:transform .3s ease; }
+        .mobile-menu.active { transform:translateX(0); }
+        .cart-overlay { background:rgba(0,0,0,.5); backdrop-filter:blur(4px); }
+        .wa-tooltip { opacity:0; visibility:hidden; transition:all .2s ease; pointer-events:none; }
+        .wa-btn:hover .wa-tooltip { opacity:1; visibility:visible; }
+        @keyframes fadeOutD { from{opacity:1;transform:translateY(0)} to{opacity:0;transform:translateY(20px)} }
+        .toast { animation:fadeInUp .4s ease-out, fadeOutD .4s ease-in 2.6s forwards; }
+        /*
+        =====================================================
+        IMAGE FOLDER STRUCTURE — REPLACE picsum URLs BELOW:
+        =====================================================
+        images/
+        ├── logo/logo.png
+        ├── banners/
+        │   ├── banner-1.jpg  ← Shobdo-Chash-Hero-Banner-01.jpg
+        │   ├── banner-2.jpg  ← Shabdho-Chash-Hero-banner-02.jpg
+        │   └── banner-3.jpg  ← Shobdho-chash-Hero-Benner-03.jpg
+        ├── books/new-arrivals/book-01~06.jpg
+        ├── books/bestsellers/best-01~04.jpg
+        ├── books/featured/feat-01~05.jpg
+        ├── categories/translation.jpg … hotel-business.jpg (68 files)
+        ├── authors/author-01~06.jpg
+        ├── payment/bkash-logo.png, nagad-logo.png, rocket-logo.png
+        ├── blog/blog-01~03.jpg
+        └── gallery/gallery-01~03.jpg
+        =====================================================
+        */
